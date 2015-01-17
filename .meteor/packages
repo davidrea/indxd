@@ -7,3 +7,7 @@
 meteor-platform
 autopublish
 insecure
+mizzao:bootstrap-3
+ian:accounts-ui-bootstrap-3
+accounts-password
+natestrauser:font-awesome
