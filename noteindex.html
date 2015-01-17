@@ -3,12 +3,30 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+<!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Notebook Index</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">What is this?</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{> loginButtons}}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="container">
+
+<h1><i class="fa fa-book fa-2x"></i> Notebook 1</h1>
+<p>2-Jan-2014 <i class="fa fa-long-arrow-right"></i> 1-Feb-2014</p>
+
+</div> <!-- /container -->
+
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
