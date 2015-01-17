@@ -1,8 +1,9 @@
 <template name="notebookList">
 
 <div class="notebook">
-	<h1><i class="fa fa-book fa-2x"></i> Notebook 1</h1>
-	<p>2-Jan-2014 <i class="fa fa-long-arrow-right"></i> 1-Feb-2014</p>
+	{{#each notebooks}}
+		{{> notebook}}
+	{{/each}}
 </div>
 
 </template>
