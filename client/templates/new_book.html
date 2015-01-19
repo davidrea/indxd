@@ -1,0 +1,42 @@
+<template name="newBook">
+
+<h1>Add a New Book!</h1>
+
+<p>Just finished a notebook? Index it! Start by adding a book here, then we'll take you to the book's page so you can add its contents.</p>
+
+<div class="container">
+
+<form>
+
+<div class="row">
+<div class="form-group col-md-12">
+<label for="inputName">Book Name</label>
+<input type="text" class="form-control" id="inputName" placeholder="Enter Book Name">
+</div> <!-- /form-group -->
+</div> <!-- /row -->
+
+<div class="row">
+
+<div class="form-group col-md-6">
+<label for="inputStartDate">Start Date</label> (optional)
+<input type="date" class="form-control" id="inputStartDate">
+</div>
+
+<div class="form-group col-md-6">
+<label for="inputEndDate">End Date</label> (optional)
+<input type="date" class="form-control" id="inputEndDate">
+</div>
+
+</div> <!-- /row -->
+
+<div class="row">
+<div class="col-md-12">
+<button type="submit" class="btn btn-primary">Create</button>
+</div>
+</div> <!-- /row -->
+
+</form>
+
+</div> <!-- /container -->
+
+</template> <!-- /newBook -->
