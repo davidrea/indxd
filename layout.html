@@ -1,22 +1,6 @@
 <template name="layout">
-<!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Notebook Index</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{{pathFor 'notebookList'}}">Home</a></li>
-            <li><a href="{{pathFor 'about'}}">What is this?</a></li>
-            <li><a href="search">Search</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            {{> loginButtons}}
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
+{{> nav}}
 
 <div class="container">
 
