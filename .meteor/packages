@@ -12,3 +12,4 @@ natestrauser:font-awesome
 iron:router
 underscore
 jquery
+audit-argument-checks
