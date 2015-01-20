@@ -10,10 +10,14 @@ Template.newBook.events({
 			endDate:$(e.target).find("#inputEndDate").val()
 		};
 
-console.log('Got name = ' + book.name);
+		Meteor.call('bookInsert', book, function(error, result) {
 
-		book._id = Notebooks.insert(book);
-		Router.go('notebookPage', book);
+			if(error) {
+				return alert(error.reason);
+			}
+			Router.go('notebookPage', {_id: result._id});
+
+		});
 
 	}
 
