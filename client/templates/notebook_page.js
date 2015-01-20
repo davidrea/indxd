@@ -14,6 +14,10 @@ Template.notebookPage.events({
 
 		Topics.insert(topic);
 
+	},
+
+	'dblclick .topicbtn': function(event) {
+		Topics.remove($(event.target).attr('id'));
 	}
 
 });

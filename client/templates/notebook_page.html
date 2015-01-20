@@ -5,6 +5,12 @@ h4
 {
   margin-top: 1.5em;
 }
+
+.topicbtn
+{
+  margin: 0.2em;
+  border-radius: 8px;
+}
 </style>
 
 <div class="container">
@@ -13,9 +19,10 @@ h4
 
 {{#if hastopics}}
 <h4>Topics in {{name}}</h4>
-{{#each topics}}
-  <button class="btn btn-default">{{topic}}&nbsp;<a class="close">&times;</a></button>
-{{/each}}
+<div style="margin-top: 0.5em; margin-bottom: 0.5em;">
+{{#each topics}}<button class="btn btn-default topicbtn" id="{{_id}}">{{topic}}{{#if page}} ({{page}}){{/if}}</button>{{/each}}
+</div>
+<p style="color: gray;"><em>Double-click a topic to remove it from this book.</em></p>
 {{/if}}
 
 <h4>Add a Topic</h4>
