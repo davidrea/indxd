@@ -2,7 +2,21 @@
 
 <div class="notebook">
 <h1><i class="fa fa-book"></i> <a href="{{pathFor 'notebookPage'}}">{{name}}</a></h1>
-<p>{{startDate}} <i class="fa fa-long-arrow-right"></i> {{endDate}} <a href="{{pathFor 'notebookEdit'}}"><i class="fa fa-pencil-square-o"></i></a></p>
+<p>
+{{#if startDate}}
+  {{startDate}} <i class="fa fa-long-arrow-right"></i>
+{{else}}
+  {{#if endDate}}
+    Finished on
+  {{else}}
+    No Start Date
+  {{/if}}
+{{/if}}
+{{#if endDate}}
+  {{endDate}}
+{{else}}
+  Not Finished Yet
+{{/if}} &nbsp;&nbsp; <a href="{{pathFor 'notebookEdit'}}"><i class="fa fa-pencil-square-o"></i></a></p>
 </div><!-- /notebook -->
 
 </template>
