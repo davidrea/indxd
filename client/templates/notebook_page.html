@@ -11,10 +11,12 @@ h4
 
 {{> notebook}}
 
+{{#if hastopics}}
 <h4>Topics in {{name}}</h4>
 {{#each topics}}
   <button class="btn btn-default">{{topic}}&nbsp;<a class="close">&times;</a></button>
 {{/each}}
+{{/if}}
 
 <h4>Add a Topic</h4>
 <form>

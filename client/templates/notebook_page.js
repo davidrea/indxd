@@ -22,6 +22,10 @@ Template.notebookPage.helpers({
 
 	topics: function() {
 		return Topics.find({bookId: Template.instance().data._id}, {sort: {topicsort: 1}});
+	},
+
+	hastopics: function() {
+		return Topics.find({bookId: Template.instance().data._id}).count();
 	}
 
 });
