@@ -1,6 +1,9 @@
 <template name="notebookList">
 
 <div class="notebook">
+	{{#each notebooksOpen}}
+		{{> notebook}}
+	{{/each}}
 	{{#each notebooks}}
 		{{> notebook}}
 	{{/each}}
