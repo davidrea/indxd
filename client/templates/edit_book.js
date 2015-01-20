@@ -12,6 +12,11 @@ Template.notebookEdit.events({
 			endDate: $(e.target).find("#inputEndDate").val()
 		}
 
+		var errors = validateBook(bookProperties);
+		if(errors.name || errors.endDate) {
+			return Session.set('bookSubmitErrors', errors);
+		}
+
 		Notebooks.update(currentBookId, {$set: bookProperties}, function(error) {
 
 			if(error) {
@@ -32,6 +37,22 @@ Template.notebookEdit.events({
 			Router.go('notebookList');
 		}
 
+	}
+
+});
+
+Template.notebookEdit.created = function() {
+	Session.set('bookSubmitErrors', {});
+}
+
+Template.notebookEdit.helpers({
+
+	errorMessage: function(field) {
+		return Session.get('bookSubmitErrors')[field];
+	},
+
+	errorClass: function(field) {
+		return Session.get('bookSubmitErrors')[field] ? 'has-error' : '';
 	}
 
 });

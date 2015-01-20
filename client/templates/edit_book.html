@@ -7,22 +7,26 @@
 <form>
 
 <div class="row">
-<div class="form-group col-md-12">
+<div class="form-group col-md-12 {{errorClass 'name'}}">
 <label for="inputName">Book Name</label>
 <input type="text" class="form-control" id="inputName" value="{{name}}" placeholder="Enter Book Name">
+<span class="help-block">{{errorMessage 'name'}}</span>
 </div> <!-- /form-group -->
 </div> <!-- /row -->
 
 <div class="row">
 
-<div class="form-group col-md-6">
+<div class="form-group col-md-6 {{errorClass 'startDate'}}">
 <label for="inputStartDate">Start Date</label> (optional)
 <input type="date" class="form-control" value="{{startDate}}" id="inputStartDate">
+<span class="help-block">{{errorMessage 'startDate'}}</span>
 </div>
 
-<div class="form-group col-md-6">
+<div class="form-group col-md-6 {{errorClass 'endDate'}}">
 <label for="inputEndDate">End Date</label> (optional)
 <input type="date" class="form-control" value="{{endDate}}" id="inputEndDate">
+<span class="help-block">{{errorMessage 'endDate'}}</span>
+
 </div>
 
 </div> <!-- /row -->
