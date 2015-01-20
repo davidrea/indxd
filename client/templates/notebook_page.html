@@ -1,3 +1,30 @@
 <template name="notebookPage">
+
+<style>
+h4
+{
+  margin-top: 1.5em;
+}
+</style>
+
+<div class="container">
+
 {{> notebook}}
+
+<h4>Topics in {{name}}</h4>
+{{#each topics}}
+  <button class="btn btn-default">{{topic}}&nbsp;<a class="close">&times;</a></button>
+{{/each}}
+
+<h4>Add a Topic</h4>
+<form>
+
+<input type="text" class="form-control" id="inputTopic" placeholder="Topic" style="width: 20em; margin: 0.25em; margin-left: 0px; float: left;">
+<input type="text" class="form-control" id="inputPage" placeholder="##" style="width: 5em;  margin: 0.25em; float: left;">
+<button class="btn btn-primary" style=" margin: 0.25em;">Add</button>
+
+</form>
+
+</div> <!-- /container -->
+
 </template> <!-- /notebookPage -->
