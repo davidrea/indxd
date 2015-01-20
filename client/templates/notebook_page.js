@@ -12,7 +12,11 @@ Template.notebookPage.events({
 			userId: this.userId
 		};
 
-		Topics.insert(topic);
+		if(Topics.findOne({topic: topic.topic, bookId: topic.bookId, page: topic.page})) {
+			throwError("This topic already exists for this book");
+		} else {
+			Topics.insert(topic);
+		}
 
 	},
 
