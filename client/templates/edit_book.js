@@ -15,7 +15,7 @@ Template.notebookEdit.events({
 		Notebooks.update(currentBookId, {$set: bookProperties}, function(error) {
 
 			if(error) {
-				alert(error.reason);
+				throwError(error.reason);
 			} else {
 				Router.go('notebookPage', {_id: currentBookId});
 			}

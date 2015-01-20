@@ -10,15 +10,36 @@ Template.newBook.events({
 			endDate:$(e.target).find("#inputEndDate").val()
 		};
 
+		var errors = validateBook(book);
+		if(errors.name || errors.endDate) {
+			return Session.set('bookSubmitErrors', errors);
+		}
+
 		Meteor.call('bookInsert', book, function(error, result) {
 
 			if(error) {
-				return alert(error.reason);
+				return throwError(error.reason);
 			}
 			Router.go('notebookPage', {_id: result._id});
 
 		});
 
+	}
+
+});
+
+Template.newBook.created = function() {
+	Session.set('bookSubmitErrors', {});
+}
+
+Template.newBook.helpers({
+
+	errorMessage: function(field) {
+		return Session.get('bookSubmitErrors')[field];
+	},
+
+	errorClass: function(field) {
+		return Session.get('bookSubmitErrors')[field] ? 'has-error' : '';
 	}
 
 });
