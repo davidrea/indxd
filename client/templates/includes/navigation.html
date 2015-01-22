@@ -2,13 +2,16 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'notebookList'}}">Notebook Index</a>
+          <a class="navbar-brand" href="{{pathFor 'welcome'}}">Notebook Index</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li {{isActiveLink 'notebookList'}}><a href="{{pathFor 'notebookList'}}">Home</a></li>
-            {{#if currentUser}}<li {{isActiveLink 'search'}}><a href="search">Search</a></li>
-            <li {{isActiveLink 'newBook'}}><a href="{{pathFor 'newBook'}}">Add Book</a></li>{{/ if}}
+            {{#if currentUser}}<li {{isActiveLink 'notebookList'}}><a href="{{pathFor 'notebookList'}}">Books</a></li>
+	    <li {{isActiveLink 'topics'}}><a href="{{pathFor 'topicList'}}">Topics</a></li>
+            <li {{isActiveLink 'search'}}><a href="{{pathFor 'search'}}">Search</a></li>
+            <li {{isActiveLink 'newBook'}}><a href="{{pathFor 'newBook'}}">Add Book</a></li>
+            {{else}}
+	    {{/ if}}
             <li {{isActiveLink 'about'}}><a href="{{pathFor 'about'}}">What is this?</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

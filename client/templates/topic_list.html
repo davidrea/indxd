@@ -1,0 +1,14 @@
+<template name="topicList">
+
+{{#each letters}}
+  {{#if hasTopics}}
+    <h3>{{letter}}</h3>
+    <ul>
+    {{#each topicsForLetter}}
+      <li>{{topic}}</li>
+    {{/each}}
+    </ul>
+  {{/if}}
+{{/each}}
+
+</template> <!-- /topicList -->
