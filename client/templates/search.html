@@ -1,0 +1,84 @@
+<template name="search">
+
+<style>
+ul.leaders {
+    max-width: 100em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none}
+ul.leaders li:after {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "}
+ul.leaders span:first-child {
+    padding-right: 0.33em;
+    background: white}
+ul.leaders span + span {
+    float: right;
+    padding-left: 0.33em;
+    background: white;
+    position: relative;
+    z-index: 1}
+</style>
+
+<div class="container">
+
+<h1>Search Topics & Books</h1>
+
+<form>
+<input type="text" class="form-control" id="search" placeholder="Search..." value="{{search}}">
+</form>
+
+<div class="search-results">
+
+{{#if search}}
+
+<h1>Results</h1>
+
+{{#if searchResults}}
+
+<h3>Topics Found</h3>
+
+	{{#if searchResults}}
+		<ul class="leaders">
+		{{#each searchResults}}
+			<li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
+		{{/each}}
+		</ul>
+	{{else}}
+		<div class="alert alert-warning">Sorry, no topics found for {{search}}.</div>
+	{{/if}}
+
+<h3>Books Found</h3>
+
+	{{#if searchResults.notebooks}}
+		<ul>		
+		{{#each searchResults.notebooks}}
+			<li><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></li>
+		{{/each}}
+		</ul>
+	{{else}}
+		<div class="alert alert-warning">Sorry, no books found for {{search}}.</div>
+	{{/if}}
+{{/if}}
+
+{{/if}}
+
+{{#unless search}}
+<p style="margin-top: 1em;">Enter at least 3 characters to search.</p>
+{{/unless}}
+
+</div> <!-- /search-results -->
+
+
+
+</div> <!-- /container-->
+
+</template> <!-- /search -->
