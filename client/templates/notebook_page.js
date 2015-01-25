@@ -9,6 +9,7 @@ Template.notebookPage.events({
 			topicsort: $(e.target).find("#inputTopic").val().toLowerCase(),
 			page: $(e.target).find("#inputPage").val(),
 			bookId: template.data._id,
+			bookName: template.data.name,
 			userId: this.userId
 		};
 
