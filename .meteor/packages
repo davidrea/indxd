@@ -13,3 +13,4 @@ iron:router
 underscore
 jquery
 audit-argument-checks
+lbee:lunr

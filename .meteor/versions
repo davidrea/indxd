@@ -35,6 +35,7 @@ iron:url@1.0.7
 jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
+lbee:lunr@0.5.7_1
 livedata@1.0.12
 localstorage@1.0.2
 logging@1.0.6
