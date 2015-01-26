@@ -1,5 +1,5 @@
 Meteor.publish('notebooks', function() {
-	return Notebooks.find();
+	return Notebooks.find({userId: this.userId});
 });
 
 Meteor.publish('topics', function() {
