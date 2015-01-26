@@ -19,6 +19,8 @@ Template.notebookPage.events({
 			Topics.insert(topic);
 		}
 
+		document.getElementById("inputTopic").select();
+
 	},
 
 	'dblclick .topicbtn': function(event) {
@@ -26,6 +28,11 @@ Template.notebookPage.events({
 	}
 
 });
+
+Template.notebookPage.rendered = function() {
+console.log('loaded');
+		document.getElementById("inputTopic").focus();
+};
 
 Template.notebookPage.helpers({
 
