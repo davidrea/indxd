@@ -40,6 +40,10 @@ Template.newBook.helpers({
 
 	errorClass: function(field) {
 		return Session.get('bookSubmitErrors')[field] ? 'has-error' : '';
+	},
+
+	hasBooks: function() {
+		return Notebooks.find().count();
 	}
 
 });

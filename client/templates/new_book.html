@@ -1,5 +1,9 @@
 <template name="newBook">
 
+{{#unless hasBooks}}
+<div class="alert alert-warning"><strong>It looks like you don't have any books yet!</strong> You'll need to add a new book here before you can visit the Books / Topics / Search pages.</div>
+{{/unless}}
+
 <h1>Add a New Book!</h1>
 
 <p>Just finished a notebook? Index it! Start by adding a book here, then we'll take you to the book's page so you can add its contents.</p>
