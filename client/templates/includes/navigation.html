@@ -7,7 +7,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             {{#if currentUser}}<li {{isActiveLink 'notebookList'}}><a href="{{pathFor 'notebookList'}}">Books</a></li>
-	    <li {{isActiveLink 'topics'}}><a href="{{pathFor 'topicList'}}">Topics</a></li>
+	    <li {{isActiveLink 'topicList'}}><a href="{{pathFor 'topicList'}}">Topics</a></li>
             <li {{isActiveLink 'search'}}><a href="{{pathFor 'search'}}">Search</a></li>
             <li {{isActiveLink 'newBook'}}><a href="{{pathFor 'newBook'}}">Add Book</a></li>
             {{else}}
