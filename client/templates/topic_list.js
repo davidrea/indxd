@@ -33,6 +33,10 @@ Template.topicList.helpers({
 		});
 		
 		return letters;
+	},
+
+	topicTotal: function() {
+		return Topics.find({userId: Meteor.userId()}).count();
 	}
 
 });

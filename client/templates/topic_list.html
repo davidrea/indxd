@@ -40,4 +40,8 @@ ul.leaders span + span {
   {{/if}}
 {{/each}}
 
+{{#unless topicTotal}}
+<div class="alert alert-warning"><strong>It looks like you haven't entered any topics yet!</strong> Visit your <a href="{{pathFor 'notebookList'}}">notebook list</a> (or <a href="{{pathFor 'newBook'}}">add a new book</a>) to start entering topics.</div>
+{{/unless}}
+
 </template> <!-- /topicList -->
