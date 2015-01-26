@@ -1,6 +1,6 @@
 Template.search.rendered = function () {
 
-	Session.setDefault('search', null);
+	Session.setDefault('search', '');
 
 };
 
@@ -15,7 +15,7 @@ Template.search.helpers({
 
 	searchReady: function() {
 		var search = Session.get('search');
-		return (search.length >= 3);
+		return (search && search.length >= 3);
 	},
 
 	topicSearchResults: function() {
@@ -23,7 +23,7 @@ Template.search.helpers({
 		var search = Session.get('search');
 		var results = [];
 
-		if(search.length >= 3) {
+		if(search && search.length >= 3) {
 
 			index = lunr(function() {
 					this.field('topic');
@@ -52,7 +52,7 @@ Template.search.helpers({
 		var search = Session.get('search');
 		var results = [];
 
-		if(search.length >= 3) {
+		if(search && search.length >= 3) {
 
 			index = lunr(function() {
 					this.field('name');
