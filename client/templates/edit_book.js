@@ -31,10 +31,13 @@ Template.notebookEdit.events({
 
 		e.preventDefault();
 
-		if( confirm("Really delete this book?")) {
-			var currentBookId = this._id;
-			Notebooks.remove(currentBookId);
-			Router.go('notebookList');
+		if( confirm("Really delete this book and all its topics?!")) {
+			Meteor.call('bookDelete', this._id, function(error, result) {
+				if(error) {
+					return throwError(error.reason);
+				} 
+				Router.go('notebookList');
+			});
 		}
 
 	}
