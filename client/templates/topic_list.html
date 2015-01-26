@@ -5,12 +5,21 @@
     <h3>{{letter}}</h3>
     <ul class="leaders">
     {{#each topicsForLetter}}
-      <li><span>{{topic}}</span>
-          <span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
+      <li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
     {{/each}}
     </ul>
   {{/if}}
 {{/each}}
+
+{{#if others}}
+<h3>Other Topics</h3>
+<p>If a topic begins with anything other than a letter (i.e. punctuation, numbers), it'll show up here</p>
+<ul class="leaders">
+{{#each others}}
+<li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
+{{/each}}
+</ul>
+{{/if}}
 
 {{#unless topicTotal}}
 <div class="alert alert-warning"><strong>It looks like you haven't entered any topics yet!</strong> Visit your <a href="{{pathFor 'notebookList'}}">notebook list</a> (or <a href="{{pathFor 'newBook'}}">add a new book</a>) to start entering topics.</div>

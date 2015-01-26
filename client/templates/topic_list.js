@@ -2,7 +2,6 @@ Template.topicList.helpers({
 
 	letters: function() {
 
-		var topics = Topics.find({userId: Meteor.userId()}).fetch();
 		var letterchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		var letterarray = letterchars.split("");
 		var letters = new Array();
@@ -18,7 +17,6 @@ Template.topicList.helpers({
 
 			// Determine if there are topics for this letter
 			var letterTopics = Topics.find({
-				userId: Meteor.userId(), 
 				topic: regex
 			}, {sort: {topic: 1}});
 
@@ -33,6 +31,13 @@ Template.topicList.helpers({
 		});
 		
 		return letters;
+	},
+
+	others: function() {
+
+		var regex = new RegExp('^[^a-zA-z]');
+		return Topics.find({topic: regex});
+
 	},
 
 	topicTotal: function() {
