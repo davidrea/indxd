@@ -7,6 +7,10 @@
  {{> error}}
 {{/each}}
 
+{{#each messages}}
+  {{> message}}
+{{/each}}
+
 </div> <!-- /errors -->
 </div> <!-- /container -->
 
@@ -17,6 +21,15 @@
 <div class="alert alert-danger" role="alert">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 {{message}}
+</div> <!-- /alert -->
+
+</template> <!-- /error -->
+
+<template name="message">
+
+<div class="alert alert-success" role="alert">
+{{message}}
+<button type="button" class="close" data-dismiss="alert">&times;</button>
 </div> <!-- /alert -->
 
 </template> <!-- /error -->
