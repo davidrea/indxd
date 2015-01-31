@@ -1,5 +1,7 @@
 accounts-base@1.1.3
 accounts-password@1.0.6
+accounts-ui@1.1.4
+accounts-ui-unstyled@1.1.6
 anti:i18n@0.4.3
 application-configuration@1.0.4
 audit-argument-checks@1.0.2
@@ -36,6 +38,7 @@ jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
 lbee:lunr@0.5.7_1
+less@1.0.12
 livedata@1.0.12
 localstorage@1.0.2
 logging@1.0.6
