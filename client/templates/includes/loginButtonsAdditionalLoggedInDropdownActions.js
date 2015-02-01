@@ -51,11 +51,3 @@ Template._loginButtonsLoggedInDropdown.events({
 	}
 
 });
-
-Template._loginButtonsLoggedInDropdown.helpers({
-
-	hasTopics: function() {
-		return Topics.find().count();
-	}
-
-});
