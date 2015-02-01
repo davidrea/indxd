@@ -38,10 +38,10 @@ Template.topicList.helpers({
 		var regex = new RegExp('^[^a-zA-z]');
 		return Topics.find({topic: regex});
 
-	},
-
-	topicTotal: function() {
-		return Topics.find({userId: Meteor.userId()}).count();
 	}
 
+});
+
+Template.registerHelper('topicTotal', function() {
+	return Topics.find({userId: Meteor.userId()}).count();
 });
