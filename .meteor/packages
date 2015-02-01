@@ -17,3 +17,4 @@ lbee:lunr
 email
 accounts-google
 accounts-twitter
+percolate:synced-cron
