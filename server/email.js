@@ -15,9 +15,9 @@ Meteor.methods({
 
 	},
 
-	emailIndexBackup: function(to) {
+	emailIndexBackup: function(userId) {
 
-		check([to], [String]);
+		check([userId], [String]);
 
 		var today = new Date().toString().split(' ').splice(1,3).join(' ');
 
@@ -38,6 +38,7 @@ Meteor.methods({
 
 			// Determine if there are topics for this letter
 			var letterTopics = Topics.find({
+				userId: userId,				
 				topic: regex
 			}, {sort: {topic: 1}});
 
@@ -51,7 +52,7 @@ Meteor.methods({
 			}
 		});
 
-		return Meteor.call('sendEmail', to, "app@daverea.com", "Your Notebook Index Backup for " + today, indexstring);
+		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "app@daverea.com", "Your Notebook Index Backup for " + today, indexstring);
 
 	}
 

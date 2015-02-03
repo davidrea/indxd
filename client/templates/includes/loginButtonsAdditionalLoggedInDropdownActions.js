@@ -2,7 +2,7 @@ Template._loginButtonsLoggedInDropdown.events({
 
 	'click #login-buttons-email-my-backup': function(event) {
 
-		Meteor.call('emailIndexBackup', Meteor.user().emails[0].address, function(error, result) {
+		Meteor.call('emailIndexBackup', Meteor.userId(), function(error, result) {
 			if(error) {
 				throwError(error.reason);
 			}
