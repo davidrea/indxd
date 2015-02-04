@@ -52,6 +52,22 @@ Meteor.methods({
 			}
 		});
 
+		var symregex = new RegExp('^[^a-zA-z]');
+		var symtopics = Topics.find({
+			userId: userId,
+			topic: symregex
+		}, {sort: {topic: 1}});
+
+		if(symtopics.count() > 0) {
+			indexstring += '\r\n\r\nOther Topics\r\n';
+		}
+
+		_.each(symtopics.fetch(), function(element, index, list) {
+
+			indexstring += "\r\n" + element.topic + " ----- " + element.bookName;
+
+		});
+
 		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "app@daverea.com", "Your Notebook Index Backup for " + today, indexstring);
 
 	}
