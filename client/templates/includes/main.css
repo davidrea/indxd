@@ -1,5 +1,6 @@
 body {
-	padding-top: 90px;
+	padding-top: 80px;
+	font-family: 'Roboto', sans-serif;
 }
 
 footer {
@@ -31,4 +32,9 @@ footer {
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #000000;
 	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar .navbar-brand {
+	font-family: 'Khula', sans-serif;
+	letter-spacing: 0.15em;
 }
