@@ -30,7 +30,6 @@ Template.notebookPage.events({
 });
 
 Template.notebookPage.rendered = function() {
-console.log('loaded');
 		document.getElementById("inputTopic").focus();
 };
 
