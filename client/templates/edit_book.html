@@ -1,5 +1,10 @@
 <template name="notebookEdit">
 
+<script>
+var bookname = Template.currentData().name;
+document.title = 'Indxd | Edit Book: ' + bookname;
+</script>
+
 <h1>Edit Book: {{name}}</h1>
 
 <div class="container">

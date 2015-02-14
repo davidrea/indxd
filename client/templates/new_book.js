@@ -20,6 +20,7 @@ Template.newBook.events({
 			if(error) {
 				return throwError(error.reason);
 			}
+			ga('send', 'event', 'book', 'create');
 			Router.go('notebookPage', {_id: result._id});
 
 		});

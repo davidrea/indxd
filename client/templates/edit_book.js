@@ -22,6 +22,7 @@ Template.notebookEdit.events({
 			if(error) {
 				throwError(error.reason);
 			} else {
+				ga('send', 'event', 'book', 'edit');
 				Router.go('notebookPage', {_id: currentBookId});
 			}
 		});
@@ -36,6 +37,7 @@ Template.notebookEdit.events({
 				if(error) {
 					return throwError(error.reason);
 				} 
+				ga('send', 'event', 'book', 'delete');
 				Router.go('notebookList');
 			});
 		}

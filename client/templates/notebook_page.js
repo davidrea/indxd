@@ -16,6 +16,7 @@ Template.notebookPage.events({
 		if(Topics.findOne({topic: topic.topic, bookId: topic.bookId, page: topic.page})) {
 			throwError("This topic already exists for this book");
 		} else {
+			ga('send', 'event', 'topic', 'add');
 			Topics.insert(topic);
 		}
 
@@ -24,6 +25,7 @@ Template.notebookPage.events({
 	},
 
 	'dblclick .topicbtn': function(event) {
+		ga('send', 'event', 'topic', 'delete');
 		Topics.remove($(event.target).attr('id'));
 	}
 
