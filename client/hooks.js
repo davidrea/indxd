@@ -13,5 +13,6 @@ Hooks.onLoggedOut = function(userid) {
 
 Hooks.onCreateUser = function(userid) {
 	check(userid, String);
+	ga('send', 'event', 'user', 'created');
 	ga('send', 'event', 'user', 'logged-in');
 }
