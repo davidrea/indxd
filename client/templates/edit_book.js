@@ -9,7 +9,8 @@ Template.notebookEdit.events({
 		var bookProperties = {
 			name: $(e.target).find("#inputName").val(),
 			startDate: $(e.target).find("#inputStartDate").val(),
-			endDate: $(e.target).find("#inputEndDate").val()
+			endDate: $(e.target).find("#inputEndDate").val(),
+			url: $(e.target).find("#inputUrl").val()
 		}
 
 		var errors = validateBook(bookProperties);

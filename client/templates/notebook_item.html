@@ -2,6 +2,9 @@
 
 <div class="notebook">
 <h1><i class="fa fa-book"></i> <a href="{{pathFor 'notebookPage'}}">{{name}}</a></h1>
+{{#if url}}
+<p><a href="{{url}}">{{url_shortened}}</a></p>
+{{/if}}
 <p>
 {{#if startDate}}
   {{startDate}} <i class="fa fa-long-arrow-right"></i>

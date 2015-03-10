@@ -20,6 +20,14 @@ document.title = 'Indxd | Edit Book: ' + bookname;
 </div> <!-- /row -->
 
 <div class="row">
+<div class="form-group col-md-12 {{errorClass 'url'}}">
+<label for="inputUrl">Book URL</label> (optional)
+<input type="text" class="form-control" id="inputUrl" value="{{url}}" placeholder="http://link.to/your-book - Can be used to link to a scanned copy of your book">
+<span class="help-block">{{errorMessage 'name'}}</span>
+</div> <!-- /form-group -->
+</div> <!-- /row -->
+
+<div class="row">
 
 <div class="form-group col-md-6 {{errorClass 'startDate'}}">
 <label for="inputStartDate">Start Date</label> (optional)
