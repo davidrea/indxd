@@ -14,7 +14,7 @@
   {{endDate}}
 {{else}}
   Not Finished Yet
-{{/if}} &#8226; {{topicCount}} topics &#8226; {{#if url}}<a href="{{url}}" target="_blank"><i class="fa fa-link"></i></a>{{/if}} &#8226; <a href="{{pathFor 'notebookEdit'}}"><i class="fa fa-pencil-square-o"></i></a></p>
+{{/if}} &#8226; {{topicCount}} topics{{#if url}} &#8226; <a href="{{url}}" target="_blank" title="Visit book's URL"><i class="fa fa-link"></i></a>{{/if}} &#8226; <a href="{{pathFor 'notebookEdit'}}" title="Edit this Notebook"><i class="fa fa-pencil-square-o"></i></a></p>
 </div><!-- /notebook -->
 
 </template>
