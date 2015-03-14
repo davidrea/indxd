@@ -20,7 +20,7 @@ document.title = "Indxd | Topic Index";
 <p>If a topic begins with anything other than a letter (i.e. punctuation, numbers), it'll show up here</p>
 <ul class="leaders">
 {{#each others}}
-<li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
+<li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}{{#if page}} ({{page}}){{/if}}</a></span></li>
 {{/each}}
 </ul>
 {{/if}}
