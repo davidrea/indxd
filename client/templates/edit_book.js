@@ -18,14 +18,15 @@ Template.notebookEdit.events({
 			return Session.set('bookSubmitErrors', errors);
 		}
 
-		Notebooks.update(currentBookId, {$set: bookProperties}, function(error) {
+		Meteor.call('bookUpdate', currentBookId, bookProperties, function(error, result) {
 
 			if(error) {
-				throwError(error.reason);
+				return throwError(error.reason);
 			} else {
 				ga('send', 'event', 'book', 'edit');
 				Router.go('notebookPage', {_id: currentBookId});
 			}
+
 		});
 	},
 
