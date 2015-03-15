@@ -68,7 +68,7 @@ Meteor.methods({
 
 		});
 
-		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "app@daverea.com", "Your Notebook Index Backup for " + today, indexstring);
+		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "Indxd.ink <no-reply@indxd.ink>", "Your Indxd Backup for " + today, indexstring);
 
 	}
 
