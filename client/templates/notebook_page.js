@@ -24,7 +24,28 @@ Template.notebookPage.events({
 
 	},
 
-	'dblclick .topicbtn': function(event) {
+	'dblclick .topicbtntitle': function(event) {
+	},
+
+	'click .topicbtntitle': function(event) {
+
+		event.preventDefault();
+		ga('send', 'event', 'topic', 'edit');
+		var newTopic = editPopup(Topics.findOne($(event.target).attr('id')).topic);
+		if(newTopic != null) {
+			if(newTopic == "") {
+				// Empty string - topic value deleted - delete topic
+				Topics.remove($(event.target).attr('id'));
+			} else {
+				// New value
+				Topics.update($(event.target).attr('id'), {$set: {topic: newTopic, topicsort: newTopic.toLowerCase()}});
+			}
+		}
+
+	},
+
+	'click .topicdel': function(event) {
+		event.preventDefault();
 		ga('send', 'event', 'topic', 'delete');
 		Topics.remove($(event.target).attr('id'));
 	}
@@ -46,3 +67,19 @@ Template.notebookPage.helpers({
 	}
 
 });
+
+editPopup = function(existing) {
+
+	var newTopic = prompt('Edit topic "' + existing + '":', existing);
+
+	if(newTopic != null) {
+		// Entered new topic, which may be empty
+		return newTopic;
+	} else {
+		// Clicked "Cancel"
+		return null;
+	}
+
+};
+
+
