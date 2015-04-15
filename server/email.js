@@ -47,7 +47,11 @@ Meteor.methods({
 			if(count > 0) {
 				indexstring += '\r\n\r\n' + letter.toUpperCase() + '\r\n';
 				_.each(letterTopics.fetch(), function(topicforletter) {
-					indexstring += "\r\n" + topicforletter.topic + " ----- " + topicforletter.bookName;
+					indexstring += "\r\n" + topicforletter.topic + " ----- ";
+					indexstring += topicforletter.bookName;
+					if(topicforletter.page != "") {
+						indexstring += " (" + topicforletter.page + ")";
+					}
 				});
 			}
 		});
