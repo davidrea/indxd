@@ -64,6 +64,10 @@ Template.notebookPage.helpers({
 
 	hastopics: function() {
 		return Topics.find({bookId: Template.instance().data._id}).count();
+	},
+
+	distinctTopics: function() {
+		return Topics.find().fetch().map(function(it) { return it.topic; });
 	}
 
 });
@@ -82,4 +86,6 @@ editPopup = function(existing) {
 
 };
 
-
+Template.notebookPage.rendered = function() {
+  Meteor.typeahead.inject();
+};

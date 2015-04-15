@@ -27,15 +27,23 @@ h4
 <div style="margin-top: 0.5em; margin-bottom: 0.5em;">
 {{#each topics}}<button class="btn btn-default" style="margin-right: .5em; margin-top: 0.5em;"><span class="topicbtntitle" id="{{_id}}">{{topic}}{{#if page}} ({{page}}){{/if}}</span><a href="#" class="topicdel" style="margin-left: 0.8em;"><i id="{{_id}}" class="fa fa-trash-o" style="color: #FCC;"></i></a></button>{{/each}}
 </div>
-<p style="color: gray;"><em>Click/tap a topic to edit it.<br>Tap the trash can icon to remove the topic from this book.</em></p>
+<p style="color: gray; font-size: 0.9em;"><em>Click/tap a topic to edit it.<br>Tap the trash can icon to remove the topic from this book.</em></p>
 {{/if}}
 
 <h4>Add a Topic</h4>
 <form>
 
-<input type="text" class="form-control" id="inputTopic" placeholder="Topic" style="width: 20em; margin: 0.25em; margin-left: 0px; float: left;">
+<div class="row">
+<div class="col-md-4" style="padding-right: 5px;">
+<input type="text" class="typeahead form-control" name="topicInput" data-source="distinctTopics" autocomplete="off" spellcheck="off" id="inputTopic" placeholder="Add Topic" style="margin: 0.25em; margin-left: 0px; float: left;">
+</div>
+
+<div class="col-md-8" style="padding: 0px;">
 <input type="text" class="form-control" id="inputPage" placeholder="##" style="width: 5em;  margin: 0.25em; float: left;">
 <button class="btn btn-primary" style=" margin: 0.25em;">Add</button>
+</div>
+</div> <!-- /row -->
+<p style="color: gray; font-size: 0.9em;"><em>Page numbers are optional.</em></p>
 
 </form>
 
