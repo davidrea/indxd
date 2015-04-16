@@ -1,14 +1,26 @@
 Template.userSettings.helpers({
 
+	// Each of these helpers populates the respective profile object if it doesn't exist;
+	// this ensures the defaults are always reflected
+
 	backupsOn: function() {
+		if(Meteor.user().profile.backupsEnabled == null) {
+			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.backupsEnabled': true }} );
+		}
 		return Meteor.user().profile.backupsEnabled;
 	},
 
 	backpsWhen: function() {
+		if(Meteor.user().profile.backupsAlways == null) {
+			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.backupsAlways': false }} );
+		}
 		return Meteor.user().profile.backupsAlways ? "Every Week" : "After Changes";
 	},
 
 	emailMember: function() {
+		if(Meteor.user().profile.mailingList == null) {
+			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
+		}
 		return Meteor.user().profile.mailingList;
 	}
 

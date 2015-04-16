@@ -12,7 +12,13 @@ SyncedCron.add({
 
 		_.each(users, function(user, index, list) {
 
-			if(Topics.find({userId: user._id}).count() > 0) {
+			// First check if the user has topics (don't e-mail an empty index!) and backups enabled
+			if((Topics.find({userId: user._id}).count() > 0) && 
+			   ((user.profile.backupsEnabled == true) || (user.profile.backupsEnabled == null)
+			  ) {
+				// Next (TODO) check to see if they've made changes since their last backup,
+				// and only want e-mailed backups if there have been changes
+
 				Meteor.call('emailIndexBackup', user._id);
 			}
 
