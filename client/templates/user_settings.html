@@ -12,7 +12,7 @@ document.title = "Indxd | User Profile";
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <button type="button" class="btn {{#unless backupsOn}}btn-warning{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{backupsEnabled}}</button> <strong>Weekly Backups</strong>
+    <button type="button" id="backup-enable" class="btn {{#unless backupsOn}}btn-warning{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{#unless backupsOn}}Off{{else}}On{{/unless}}</button> <strong>Weekly Backups</strong>
   </div>
   <div class="panel-body">
 	Indxd can e-mail you a plain text copy of your notebook and topic index weekly. By default, this weekly backup is turned on; you can turn it off here.
@@ -21,7 +21,7 @@ document.title = "Indxd | User Profile";
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <button type="button" class="btn btn-info" style="margin-right: 1em;">{{backpsWhen}}</button> <strong>When to Send Backups</strong>
+    <button type="button" id="backup-when" class="btn btn-info" style="margin-right: 1em;">{{backpsWhen}}</button> <strong>When to Send Backups</strong>
   </div>
   <div class="panel-body">
 	By default, Indxd only e-mails you a backup of your index if you've changed something since the last backup. If you would rather receive a backup <em>every</em> week, turn this on.
@@ -30,7 +30,7 @@ document.title = "Indxd | User Profile";
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <button type="button" class="btn {{#unless emailMember}}btn-default{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{emailPreference}}</button> <strong>E-Mail Updates</strong>
+    <button type="button" id="newsletter-join" class="btn {{#unless emailMember}}btn-default{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{#unless emailMember}}Off{{else}}On{{/unless}}</button> <strong>E-Mail Updates</strong>
   </div>
   <div class="panel-body">
 	You can opt-into the occasional Indxd updates mailing list here. You'll receive announcement e-mails from me once in a while with updates about the Indxd service - and maybe other cool stuff too.
@@ -39,7 +39,7 @@ document.title = "Indxd | User Profile";
 
 <div class="panel panel-danger">
   <div class="panel-heading">
-    <button type="button" class="btn btn-danger" style="margin-right: 1em;">Delete</button> <strong>Delete My Indxd Account</strong>
+    <button type="button" id="delete-account" class="btn btn-danger" style="margin-right: 1em;">Delete</button> <strong>Delete My Indxd Account</strong>
   </div>
   <div class="panel-body">
 	I'm sad that you're leaving, but if you don't want your Indxd account any more, you can delete it here. <strong>Caution: Deleting an account is <span style="color: red;">permanent</span> and <span style="color: red;">immediate</span>, and there is no way to recover your data!</strong>
