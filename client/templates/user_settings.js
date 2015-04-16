@@ -47,16 +47,16 @@ Template.userSettings.events({
 
 	'click #newsletter-join': function(event) {
 		if(Meteor.user().profile.mailingList) {
-			// TODO Add user to Mailchimp list
+			Meteor.call('mailingListUnsubscribe', Meteor.userId());
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
 		} else {
-			// TODO Remove user from Mailchimp list
+			Meteor.call('mailingListSubscribe', Meteor.userId());
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': true }} );
 		}
 	},
 
 	'click #delete-account': function(event) {
-		if("DELETE" == window.prompt("To delete your account, enter DELETE here:", "Seriously, this is PERMANENT!")) {
+		if("DELETE" == window.prompt("To delete your account, type out the word DELETE here:", "Seriously, this is PERMANENT!")) {
 			Meteor.users.remove( { _id: Meteor.userId() } );
 			Router.go('welcome');
 		}
