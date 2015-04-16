@@ -11,10 +11,11 @@ Template.userSettings.helpers({
 	},
 
 	backpsWhen: function() {
-		if(Meteor.user().profile.backupsAlways == null) {
+		/* if(Meteor.user().profile.backupsAlways == null) {
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.backupsAlways': false }} );
 		}
-		return Meteor.user().profile.backupsAlways ? "Every Week" : "After Changes";
+		return Meteor.user().profile.backupsAlways ? "Every Week" : "After Changes"; */
+		return "Coming Soon!";
 	},
 
 	emailMember: function() {
@@ -46,8 +47,10 @@ Template.userSettings.events({
 
 	'click #newsletter-join': function(event) {
 		if(Meteor.user().profile.mailingList) {
+			// TODO Add user to Mailchimp list
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
 		} else {
+			// TODO Remove user from Mailchimp list
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': true }} );
 		}
 	},
