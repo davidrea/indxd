@@ -1,0 +1,53 @@
+<template name="userSettings">
+
+<script>
+document.title = "Indxd | User Profile";
+</script>
+
+<h1>Personal Settings</h1>
+
+{{#if currentUser}}
+
+<p style="margin-top: 1em; margin-bottom: 2em;">You can customize your Indxd account here. All changes take effect immediately; there's no "save" button to click and you can browse away from this page once you have it looking the way you want.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" class="btn {{#unless backupsOn}}btn-warning{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{backupsEnabled}}</button> <strong>Weekly Backups</strong>
+  </div>
+  <div class="panel-body">
+	Indxd can e-mail you a plain text copy of your notebook and topic index weekly. By default, this weekly backup is turned on; you can turn it off here.
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" class="btn btn-info" style="margin-right: 1em;">{{backpsWhen}}</button> <strong>When to Send Backups</strong>
+  </div>
+  <div class="panel-body">
+	By default, Indxd only e-mails you a backup of your index if you've changed something since the last backup. If you would rather receive a backup <em>every</em> week, turn this on.
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" class="btn {{#unless emailMember}}btn-default{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{emailPreference}}</button> <strong>E-Mail Updates</strong>
+  </div>
+  <div class="panel-body">
+	You can opt-into the occasional Indxd updates mailing list here. You'll receive announcement e-mails from me once in a while with updates about the Indxd service - and maybe other cool stuff too.
+  </div>
+</div>
+
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <button type="button" class="btn btn-danger" style="margin-right: 1em;">Delete</button> <strong>Delete My Indxd Account</strong>
+  </div>
+  <div class="panel-body">
+	I'm sad that you're leaving, but if you don't want your Indxd account any more, you can delete it here. <strong>Caution: Deleting an account is <span style="color: red;">permanent</span> and <span style="color: red;">immediate</span>, and there is no way to recover your data!</strong>
+  </div>
+</div>
+
+{{else}}
+<div class="alert alert-danger" role="alert" style="margin-top: 1em;">Sorry, you must be logged in to access Personal Settings!</div>
+{{/if}}
+
+</template> <!-- /userProfile -->
