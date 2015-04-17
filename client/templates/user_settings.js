@@ -23,6 +23,10 @@ Template.userSettings.helpers({
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
 		}
 		return Meteor.user().profile.mailingList;
+	},
+
+	mailchimpInProgress: function() {
+		return Session.equals('mailchimpInProgress', true);
 	}
 
 });
@@ -47,11 +51,33 @@ Template.userSettings.events({
 
 	'click #newsletter-join': function(event) {
 		if(Meteor.user().profile.mailingList) {
-			Meteor.call('mailingListUnsubscribe', Meteor.userId());
-			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
+
+			Session.set("mailchimpInProgress", true);
+			Meteor.call('mailingListUnsubscribe', Meteor.userId(), function(error, result) {
+
+				Session.set("mailchimpInProgress", false);
+				if(error) {
+					return throwError(error.reason);
+				} else {
+					Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': false }} );
+				}
+
+			});
+
 		} else {
-			Meteor.call('mailingListSubscribe', Meteor.userId());
-			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': true }} );
+
+			Session.set("mailchimpInProgress", true);
+			Meteor.call('mailingListSubscribe', Meteor.userId(), function(error, result) {
+
+				Session.set("mailchimpInProgress", false);
+				if(error) {
+					return throwError(error.reason);
+				} else {
+					Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.mailingList': true }} );
+				}
+
+			});
+
 		}
 	},
 

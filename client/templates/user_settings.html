@@ -30,7 +30,13 @@ document.title = "Indxd | User Profile";
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <button type="button" id="newsletter-join" class="btn {{#unless emailMember}}btn-default{{else}}btn-success{{/unless}}" style="margin-right: 1em;">{{#unless emailMember}}Off{{else}}On{{/unless}}</button> <strong>E-Mail Updates</strong>
+	<button type="button" id="newsletter-join" class="btn {{#unless emailMember}}btn-default{{else}}btn-success{{/unless}}" style="margin-right: 1em;">
+		{{#if mailchimpInProgress}}
+			<i class="fa fa-spinner fa-spin"></i>
+		{{else}}
+			{{#unless emailMember}}Off{{else}}On{{/unless}}
+		{{/if}}
+	</button> <strong>E-Mail Updates</strong>
   </div>
   <div class="panel-body">
 	You can opt-into the occasional Indxd updates mailing list here. You'll receive announcement e-mails from me once in a while with updates about the Indxd service - and maybe other cool stuff too.
