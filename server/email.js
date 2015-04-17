@@ -85,7 +85,7 @@ Meteor.methods({
 		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
 		var result = mailChimp.call( 'lists' , 'subscribe' , {
 			'apikey': Meteor.settings.private.MailChimp.apiKey,
-			'id' : "dfecbee7cf",
+			'id' : Meteor.settings.private.MailChimp.listId,
 			'email' : { 'email' : address },
 			'double_optin' : false,
 			'update_existing' : true,
@@ -105,7 +105,7 @@ Meteor.methods({
 		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
 		var result = mailChimp.call( 'lists' , 'unsubscribe' , {
 			'apikey': Meteor.settings.private.MailChimp.apiKey,
-			'id' : "dfecbee7cf",
+			'id' : Meteor.settings.private.MailChimp.listId,
 			'email' : { 'email' : address }
 		});
 
