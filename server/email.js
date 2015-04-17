@@ -85,12 +85,16 @@ Meteor.methods({
 		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
 		var result = mailChimp.call( 'lists' , 'subscribe' , {
 			'apikey': Meteor.settings.private.MailChimp.apiKey,
-			'id' : "92d1a6ef76",
+			'id' : "dfecbee7cf",
 			'email' : { 'email' : address },
 			'double_optin' : false,
 			'update_existing' : true,
 			'send_welcome' : true
 		});
+
+		if(result.error) {
+			throw new Meteor.Error("subscribe-failed", "Sorry, we encountered a problem processing your mailing list subscription.");
+		}
 
 	},
 
@@ -101,9 +105,13 @@ Meteor.methods({
 		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
 		var result = mailChimp.call( 'lists' , 'unsubscribe' , {
 			'apikey': Meteor.settings.private.MailChimp.apiKey,
-			'id' : "92d1a6ef76",
+			'id' : "dfecbee7cf",
 			'email' : { 'email' : address }
 		});
+
+		if(result.error) {
+			throw new Meteor.Error("unsubscribe-failed", "Sorry, we encountered a problem processing your mailing list removal.");
+		}
 
 	}
 
