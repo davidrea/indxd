@@ -9,6 +9,7 @@ SyncedCron.add({
 	job: function() {
 
 		var users = Meteor.users.find().fetch();
+		var dobackup = true;
 
 		_.each(users, function(user, index, list) {
 
@@ -16,10 +17,20 @@ SyncedCron.add({
 			if((Topics.find({userId: user._id}).count() > 0) && 
 			   ((user.profile.backupsEnabled == true) || (user.profile.backupsEnabled == null))
 			  ) {
-				// Next (TODO) check to see if they've made changes since their last backup,
-				// and only want e-mailed backups if there have been changes
+				// Check to see if the user has made edits since their last backup ran
+				if(user.profile.lastEdit && user.profile.lastBackup && (user.profile.lastEdit < user.profile.lastBackup)) {
+					dobackup = false;
+				}
 
-				Meteor.call('emailIndexBackup', user._id);
+				// Check to see if the user has overridden smart backups
+				if(user.profile.backupsAlways) {
+					dobackup = true;
+				}
+
+				if(dobackup) {
+					Meteor.call('emailIndexBackup', user._id);
+					Meteor.users.update( { _id: user._id }, { $set: { 'profile.lastBackup': new Date() }} );
+				}
 			}
 
 		});

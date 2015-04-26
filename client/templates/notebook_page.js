@@ -18,6 +18,7 @@ Template.notebookPage.events({
 		} else {
 			ga('send', 'event', 'topic', 'add');
 			Topics.insert(topic);
+			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 		}
 
 		document.getElementById("inputTopic").select();
@@ -33,9 +34,11 @@ Template.notebookPage.events({
 			if(newTopic == "") {
 				// Empty string - value deleted - delete topic
 				Topics.remove($(event.target).attr('id'));
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 			} else {
 				// New value
 				Topics.update($(event.target).attr('id'), {$set: {topic: newTopic, topicsort: newTopic.toLowerCase()}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 			}
 		}
 
@@ -50,9 +53,11 @@ Template.notebookPage.events({
 			if(newPage == "") {
 				// Empty string - value deleted - remove page number
 				Topics.update($(event.target).attr('id'), {$set: {page: ""}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 			} else {
 				// New value
 				Topics.update($(event.target).attr('id'), {$set: {page: newPage}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 			}
 		}
 
@@ -62,6 +67,7 @@ Template.notebookPage.events({
 		event.preventDefault();
 		ga('send', 'event', 'topic', 'delete');
 		Topics.remove($(event.target).attr('id'));
+		Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 	}
 
 });

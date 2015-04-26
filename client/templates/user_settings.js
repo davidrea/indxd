@@ -11,11 +11,10 @@ Template.userSettings.helpers({
 	},
 
 	backpsWhen: function() {
-		/* if(Meteor.user().profile.backupsAlways == null) {
+		if(Meteor.user().profile.backupsAlways == null) {
 			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.backupsAlways': false }} );
 		}
-		return Meteor.user().profile.backupsAlways ? "Every Week" : "After Changes"; */
-		return "Coming Soon!";
+		return Meteor.user().profile.backupsAlways ? "Every Week" : "Only After Changes";
 	},
 
 	emailMember: function() {
