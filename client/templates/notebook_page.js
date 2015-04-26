@@ -24,9 +24,6 @@ Template.notebookPage.events({
 
 	},
 
-	'dblclick .topicbtntitle': function(event) {
-	},
-
 	'click .topicbtntitle': function(event) {
 
 		event.preventDefault();
