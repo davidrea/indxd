@@ -28,14 +28,31 @@ Template.notebookPage.events({
 
 		event.preventDefault();
 		ga('send', 'event', 'topic', 'edit');
-		var newTopic = editPopup(Topics.findOne($(event.target).attr('id')).topic);
+		var newTopic = editTopicPopup(Topics.findOne($(event.target).attr('id')).topic);
 		if(newTopic != null) {
 			if(newTopic == "") {
-				// Empty string - topic value deleted - delete topic
+				// Empty string - value deleted - delete topic
 				Topics.remove($(event.target).attr('id'));
 			} else {
 				// New value
 				Topics.update($(event.target).attr('id'), {$set: {topic: newTopic, topicsort: newTopic.toLowerCase()}});
+			}
+		}
+
+	},
+
+	'click .topicbtnpage': function(event) {
+
+		event.preventDefault();
+		ga('send', 'event', 'topic', 'pageedit');
+		var newPage = editPagePopup(Topics.findOne($(event.target).attr('id')).topic, Topics.findOne($(event.target).attr('id')).page);
+		if(newPage != null) {
+			if(newPage == "") {
+				// Empty string - value deleted - remove page number
+				Topics.update($(event.target).attr('id'), {$set: {page: ""}});
+			} else {
+				// New value
+				Topics.update($(event.target).attr('id'), {$set: {page: newPage}});
 			}
 		}
 
@@ -69,9 +86,23 @@ Template.notebookPage.helpers({
 
 });
 
-editPopup = function(existing) {
+editTopicPopup = function(existing) {
 
 	var newTopic = prompt('Edit topic "' + existing + '":', existing);
+
+	if(newTopic != null) {
+		// Entered new topic, which may be empty
+		return newTopic;
+	} else {
+		// Clicked "Cancel"
+		return null;
+	}
+
+};
+
+editPagePopup = function(existingTopic, existingPage) {
+
+	var newTopic = prompt('Change topic page number "' + existingTopic + '":', existingPage);
 
 	if(newTopic != null) {
 		// Entered new topic, which may be empty
