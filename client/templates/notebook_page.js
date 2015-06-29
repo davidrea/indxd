@@ -87,7 +87,12 @@ Template.notebookPage.helpers({
 	},
 
 	distinctTopics: function() {
-		return Topics.find().fetch().map(function(it) { return it.topic; });
+		return _.uniq(
+			Topics.find({}, {
+				sort: {topic: 1}, fields: {topic: true}
+			}).fetch().map(function(it) {
+				return it.topic;
+			}) ,true);
 	}
 
 });
