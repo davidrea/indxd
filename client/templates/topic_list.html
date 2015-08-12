@@ -9,7 +9,23 @@ document.title = "Indxd | Topic Index";
     <h3>{{letter}}</h3>
     <ul class="leaders">
     {{#each topicsForLetter}}
-      <li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}{{#if page}} ({{page}}){{/if}}</a></span></li>
+      <li>
+        {{#if multipleBooks}}
+          <span>{{topic}}</span><span>(<a data-toggle="collapse" href="#collapse-{{topic}}">{{bookCount}} Books</a>)</span>
+        {{else}}
+          {{#each bookList}}
+            <span>{{referringTopic}}</span><span><a href="{{pathFor 'notebookPage' _id=bookId}}">{{bookName}}</a>{{#if bookPage}} (p. {{bookPage}}){{/if}}</span>
+          {{/each}}
+        {{/if}}
+      </li>
+      <div class="collapse" id="collapse-{{topic}}" style="margin-top: .5em;">
+        <div class="well">
+          <p>The topic <strong>{{topic}}</strong> appears in these books:</p>
+          {{#each bookList}}
+            <a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a>{{#if bookPage}} (p. {{bookPage}}){{/if}}<br>
+          {{/each}}
+        </div>
+      </div>
     {{/each}}
     </ul>
   {{/if}}
