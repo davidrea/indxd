@@ -40,7 +40,7 @@ Template.topicList.helpers({
 					topic.bookList = [];
 					topic.bookCount = 0;
 					topic.multipleBooks = 0;
-					var topics = Topics.find({topic: topicName});
+					var topics = Topics.find({topic: topicName}, {sort: {bookName: 1}});
 					if(topics.count() > 1) { topic.multipleBooks = 1; }
 					_.each(topics.fetch(), function(thetopic, index, list) {
 						topic.bookCount += 1;
