@@ -22,6 +22,7 @@ Template.search.helpers({
 		var index, docs, searchResults;
 		var search = Session.get('search');
 		var results = [];
+		var list = [];
 
 		if(search && search.length >= 3) {
 
@@ -29,7 +30,7 @@ Template.search.helpers({
 					this.field('topic');
 					this.ref('_id');
 				});
-			docs = Topics.find().fetch();
+			docs = Topics.find({}, {sort: {bookName: 1}}).fetch();
 			_.each(docs, function(topic) {
 				index.add(topic);
 			});
@@ -40,11 +41,32 @@ Template.search.helpers({
 				if(searchResult.score > 0) {
 					results.push(_.findWhere(docs, {_id: searchResult.ref}));
 				}
+			});
 
+			// Collapse redundant topics
+			var uniqTopicNames = _.uniq(_.sortBy(results, 'topic').map(function(x) {return x.topic;}), true);
+			_.each(uniqTopicNames, function(topicName) {
+				var topic = {};
+				topic.topic = topicName;
+				topic.bookList = [];
+				topic.bookCount = 0;
+				topic.multipleBooks = 0;
+				var topics = _.where(docs, {topic: topicName});
+				if(topics.length > 1) { topic.multipleBooks = 1; }
+				_.each(topics, function(thetopic, index, list) {
+					topic.bookCount += 1;
+					var book = {};
+					book.referringTopic = topicName;
+					book.bookName = thetopic.bookName;
+					book.bookId = thetopic.bookId;
+					book.bookPage = thetopic.page;
+					topic.bookList.push(book);
+				});
+				list.push(topic);
 			});
 		}
 
-		return results;
+		return list;
 	},
 
 	notebookSearchResults: function() {
