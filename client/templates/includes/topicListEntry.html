@@ -1,14 +1,14 @@
 <template name="topicListEntry">
   <li>
     {{#if multipleBooks}}
-      <span>{{topic}}</span><span>(<a data-toggle="collapse" href="#collapse-{{topic}}">{{bookCount}} Books</a>)</span>
+      <span>{{topic}}</span><span>(<a data-toggle="collapse" href="#collapse-{{uid}}">{{bookCount}} Books</a>)</span>
     {{else}}
       {{#each bookList}}
         <span>{{referringTopic}}</span><span><a href="{{pathFor 'notebookPage' _id=bookId}}">{{bookName}}</a>{{#if bookPage}} (p. {{bookPage}}){{/if}}</span>
       {{/each}}
     {{/if}}
   </li>
-  <div class="collapse" id="collapse-{{topic}}" style="margin-top: .5em;">
+  <div class="collapse" id="collapse-{{uid}}" style="margin-top: .5em;">
     <div class="well">
       <p>The topic <strong>{{topic}}</strong> appears in these books:</p>
       {{#each bookList}}

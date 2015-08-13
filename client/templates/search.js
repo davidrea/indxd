@@ -48,6 +48,7 @@ Template.search.helpers({
 			_.each(uniqTopicNames, function(topicName) {
 				var topic = {};
 				topic.topic = topicName;
+				topic.uid = _.uniqueId();
 				topic.bookList = [];
 				topic.bookCount = 0;
 				topic.multipleBooks = 0;

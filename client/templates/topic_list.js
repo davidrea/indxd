@@ -37,6 +37,7 @@ Template.topicList.helpers({
 				_.each(letterTopicNames, function(topicName, index, list) {
 					var topic = {};
 					topic.topic = topicName;
+					topic.uid = _.uniqueId();
 					topic.bookList = [];
 					topic.bookCount = 0;
 					topic.multipleBooks = 0;
