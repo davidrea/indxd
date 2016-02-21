@@ -9,7 +9,8 @@ Template.notebookEdit.events({
 		var bookProperties = {
 			name: $(e.target).find("#inputName").val(),
 			startDate: $(e.target).find("#inputStartDate").val(),
-			endDate: $(e.target).find("#inputEndDate").val()
+			endDate: $(e.target).find("#inputEndDate").val(),
+			url: $(e.target).find("#inputUrl").val()
 		}
 
 		var errors = validateBook(bookProperties);
@@ -17,14 +18,15 @@ Template.notebookEdit.events({
 			return Session.set('bookSubmitErrors', errors);
 		}
 
-		Notebooks.update(currentBookId, {$set: bookProperties}, function(error) {
+		Meteor.call('bookUpdate', currentBookId, bookProperties, function(error, result) {
 
 			if(error) {
-				throwError(error.reason);
+				return throwError(error.reason);
 			} else {
 				ga('send', 'event', 'book', 'edit');
 				Router.go('notebookPage', {_id: currentBookId});
 			}
+
 		});
 	},
 

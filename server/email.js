@@ -1,3 +1,5 @@
+var mailChimp = new MailChimp( Meteor.settings.private.MailChimp.apiKey, { version: '2.0' } );
+
 Meteor.methods({
 
 	sendEmail: function(to, from, subject, text) {
@@ -21,7 +23,7 @@ Meteor.methods({
 
 		var today = new Date().toString().split(' ').splice(1,3).join(' ');
 
-		var indexstring = 'This is an e-mail backup of your topics from Notebook Index';
+		var indexstring = 'This is an e-mail backup of your topics from Indxd';
 
 		var letterchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		var letterarray = letterchars.split("");
@@ -47,7 +49,11 @@ Meteor.methods({
 			if(count > 0) {
 				indexstring += '\r\n\r\n' + letter.toUpperCase() + '\r\n';
 				_.each(letterTopics.fetch(), function(topicforletter) {
-					indexstring += "\r\n" + topicforletter.topic + " ----- " + topicforletter.bookName;
+					indexstring += "\r\n" + topicforletter.topic + " ----- ";
+					indexstring += topicforletter.bookName;
+					if(topicforletter.page != "") {
+						indexstring += " (" + topicforletter.page + ")";
+					}
 				});
 			}
 		});
@@ -68,7 +74,44 @@ Meteor.methods({
 
 		});
 
-		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "app@daverea.com", "Your Notebook Index Backup for " + today, indexstring);
+		return Meteor.call('sendEmail', Meteor.users.findOne({_id: userId}).emails[0].address, "Indxd.ink <no-reply@indxd.ink>", "Your Indxd Backup for " + today, indexstring);
+
+	},
+
+	mailingListSubscribe: function(userId) {
+
+		check([userId], [String]);
+
+		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
+		var result = mailChimp.call( 'lists' , 'subscribe' , {
+			'apikey': Meteor.settings.private.MailChimp.apiKey,
+			'id' : Meteor.settings.private.MailChimp.listId,
+			'email' : { 'email' : address },
+			'double_optin' : false,
+			'update_existing' : true,
+			'send_welcome' : true
+		});
+
+		if(result.error) {
+			throw new Meteor.Error("subscribe-failed", "Sorry, we encountered a problem processing your mailing list subscription.");
+		}
+
+	},
+
+	mailingListUnsubscribe: function(userId) {
+
+		check([userId], [String]);
+
+		var address = Meteor.users.findOne({_id: userId}).emails[0].address;
+		var result = mailChimp.call( 'lists' , 'unsubscribe' , {
+			'apikey': Meteor.settings.private.MailChimp.apiKey,
+			'id' : Meteor.settings.private.MailChimp.listId,
+			'email' : { 'email' : address }
+		});
+
+		if(result.error) {
+			throw new Meteor.Error("unsubscribe-failed", "Sorry, we encountered a problem processing your mailing list removal.");
+		}
 
 	}
 

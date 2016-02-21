@@ -18,15 +18,56 @@ Template.notebookPage.events({
 		} else {
 			ga('send', 'event', 'topic', 'add');
 			Topics.insert(topic);
+			Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 		}
 
 		document.getElementById("inputTopic").select();
 
 	},
 
-	'dblclick .topicbtn': function(event) {
+	'click .topicbtntitle': function(event) {
+
+		event.preventDefault();
+		ga('send', 'event', 'topic', 'edit');
+		var newTopic = editTopicPopup(Topics.findOne($(event.target).attr('id')).topic);
+		if(newTopic != null) {
+			if(newTopic == "") {
+				// Empty string - value deleted - delete topic
+				Topics.remove($(event.target).attr('id'));
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
+			} else {
+				// New value
+				Topics.update($(event.target).attr('id'), {$set: {topic: newTopic, topicsort: newTopic.toLowerCase()}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
+			}
+		}
+
+	},
+
+	'click .topicbtnpage': function(event) {
+
+		event.preventDefault();
+		ga('send', 'event', 'topic', 'pageedit');
+		var newPage = editPagePopup(Topics.findOne($(event.target).attr('id')).topic, Topics.findOne($(event.target).attr('id')).page);
+		if(newPage != null) {
+			if(newPage == "") {
+				// Empty string - value deleted - remove page number
+				Topics.update($(event.target).attr('id'), {$set: {page: ""}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
+			} else {
+				// New value
+				Topics.update($(event.target).attr('id'), {$set: {page: newPage}});
+				Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
+			}
+		}
+
+	},
+
+	'click .topicdel': function(event) {
+		event.preventDefault();
 		ga('send', 'event', 'topic', 'delete');
 		Topics.remove($(event.target).attr('id'));
+		Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.lastEdit': new Date() }} );
 	}
 
 });
@@ -43,6 +84,47 @@ Template.notebookPage.helpers({
 
 	hastopics: function() {
 		return Topics.find({bookId: Template.instance().data._id}).count();
+	},
+
+	distinctTopics: function() {
+		return _.uniq(
+			Topics.find({}, {
+				sort: {topic: 1}, fields: {topic: true}
+			}).fetch().map(function(it) {
+				return it.topic;
+			}) ,true);
 	}
 
 });
+
+editTopicPopup = function(existing) {
+
+	var newTopic = prompt('Edit topic "' + existing + '":', existing);
+
+	if(newTopic != null) {
+		// Entered new topic, which may be empty
+		return newTopic;
+	} else {
+		// Clicked "Cancel"
+		return null;
+	}
+
+};
+
+editPagePopup = function(existingTopic, existingPage) {
+
+	var newTopic = prompt('Change topic page number "' + existingTopic + '":', existingPage);
+
+	if(newTopic != null) {
+		// Entered new topic, which may be empty
+		return newTopic;
+	} else {
+		// Clicked "Cancel"
+		return null;
+	}
+
+};
+
+Template.notebookPage.rendered = function() {
+  Meteor.typeahead.inject();
+};

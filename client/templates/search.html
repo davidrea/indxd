@@ -23,7 +23,7 @@ document.title = 'Indxd | Search';
 	{{#if topicSearchResults}}
 		<ul class="leaders">
 		{{#each topicSearchResults}}
-			<li><span>{{topic}}</span><span><a href="{{pathFor 'notebookPage' _id=this.bookId}}">{{bookName}}</a></span></li>
+			{{> topicListEntry}}
 		{{/each}}
 		</ul>
 	{{else}}
