@@ -23,7 +23,7 @@ Meteor.methods({
 
 		var today = new Date().toString().split(' ').splice(1,3).join(' ');
 
-		var indexstring = 'This is an e-mail backup of your topics from Notebook Index';
+		var indexstring = 'This is an e-mail backup of your topics from Indxd';
 
 		var letterchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		var letterarray = letterchars.split("");
